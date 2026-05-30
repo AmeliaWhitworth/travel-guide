@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Amelia's Travel Guide</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       font-family: Georgia, serif;
@@ -28,7 +33,7 @@
       border-radius: 12px;
       padding: 28px;
       margin-bottom: 32px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
     }
 
     .avatar {
@@ -43,13 +48,18 @@
       flex-shrink: 0;
     }
 
-    .profile-info h1 { font-size: 1.6rem; margin-bottom: 4px; }
+    .profile-info h1 {
+      font-size: 1.6rem;
+      margin-bottom: 4px;
+    }
+
     .profile-info .tagline {
       color: #777;
       font-style: italic;
       font-size: 0.95rem;
       margin-bottom: 10px;
     }
+
     .profile-info .bio {
       font-size: 0.92rem;
       line-height: 1.6;
@@ -66,14 +76,16 @@
       color: #555;
     }
 
-    .place-list { list-style: none; }
+    .place-list {
+      list-style: none;
+    }
 
     .place-list li {
       background: #fff;
       border-radius: 10px;
       padding: 18px 20px;
       margin-bottom: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
       display: flex;
       align-items: center;
       gap: 16px;
@@ -83,7 +95,7 @@
 
     .place-list li:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
     }
 
     .rank {
@@ -93,7 +105,11 @@
       min-width: 36px;
     }
 
-    .place-meta h2 { font-size: 1.05rem; margin-bottom: 3px; }
+    .place-meta h2 {
+      font-size: 1.05rem;
+      margin-bottom: 3px;
+    }
+
     .place-meta .region {
       font-size: 0.82rem;
       color: #999;
@@ -109,7 +125,9 @@
     }
 
     /* ── Detail view ── */
-    #detail-view { display: none; }
+    #detail-view {
+      display: none;
+    }
 
     .back-btn {
       background: none;
@@ -124,14 +142,17 @@
       align-items: center;
       gap: 6px;
     }
-    .back-btn:hover { color: #333; }
+
+    .back-btn:hover {
+      color: #333;
+    }
 
     .detail-header {
       background: #fff;
       border-radius: 12px;
       padding: 28px 28px 20px;
       margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
     }
 
     .detail-header .detail-rank {
@@ -142,7 +163,10 @@
       margin-bottom: 6px;
     }
 
-    .detail-header h1 { font-size: 2rem; margin-bottom: 4px; }
+    .detail-header h1 {
+      font-size: 2rem;
+      margin-bottom: 4px;
+    }
 
     .detail-header .detail-region {
       font-size: 0.88rem;
@@ -179,7 +203,10 @@
       transition: all 0.15s;
     }
 
-    .filter-btn:hover { border-color: #c9b8a8; color: #444; }
+    .filter-btn:hover {
+      border-color: #c9b8a8;
+      color: #444;
+    }
 
     .filter-btn.active {
       background: #c9b8a8;
@@ -188,14 +215,16 @@
     }
 
     /* ── Recommendation cards ── */
-    .rec-list { list-style: none; }
+    .rec-list {
+      list-style: none;
+    }
 
     .rec-card {
       background: #fff;
       border-radius: 10px;
       padding: 18px 20px;
       margin-bottom: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
       display: flex;
       gap: 14px;
       align-items: flex-start;
@@ -209,7 +238,9 @@
       padding-top: 2px;
     }
 
-    .rec-body { flex: 1; }
+    .rec-body {
+      flex: 1;
+    }
 
     .rec-body .rec-name {
       font-size: 1rem;
@@ -242,129 +273,171 @@
       padding: 40px 0;
       font-size: 0.95rem;
     }
+
+    [contenteditable] {
+      outline: none;
+      border-radius: 4px;
+      cursor: text;
+      transition: background 0.15s, box-shadow 0.15s;
+    }
+
+    [contenteditable]:hover {
+      background: #faf7f4;
+    }
+
+    [contenteditable]:focus {
+      background: #faf7f4;
+      box-shadow: 0 0 0 2px #e0d5c8;
+    }
   </style>
 </head>
-<body>
-<div class="container">
 
-  <!-- List view -->
-  <div id="list-view">
-    <div class="profile">
-      <div class="avatar">✈️</div>
-      <div class="profile-info">
-        <h1>Amelia Whitworth</h1>
-        <p class="tagline">Always planning the next trip. Never enough time.</p>
-        <p class="bio">These are the places I keep coming back to — ranked by how much I miss them when I'm gone. Click into any one for my actual recommendations, not the generic stuff.</p>
+<body>
+  <div class="container">
+
+    <!-- List view -->
+    <div id="list-view">
+      <div class="profile">
+        <div class="avatar">✈️</div>
+        <div class="profile-info">
+          <h1>Amelia Whitworth</h1>
+          <p class="tagline">Always planning the next trip. Never enough time.</p>
+          <p class="bio">These are the places I keep coming back to — ranked by how much I miss them when I'm gone.
+            Click into any one for my actual recommendations, not the generic stuff.</p>
+        </div>
       </div>
+
+      <p class="section-title">My Ranked Places</p>
+      <ul class="place-list" id="place-list"></ul>
     </div>
 
-    <p class="section-title">My Ranked Places</p>
-    <ul class="place-list" id="place-list"></ul>
+    <!-- Detail view -->
+    <div id="detail-view">
+      <button class="back-btn" onclick="showList()">&#8592; Back to places</button>
+      <div class="detail-header" id="detail-header"></div>
+      <div class="filters" id="filters"></div>
+      <ul class="rec-list" id="rec-list"></ul>
+    </div>
+
   </div>
 
-  <!-- Detail view -->
-  <div id="detail-view">
-    <button class="back-btn" onclick="showList()">&#8592; Back to places</button>
-    <div class="detail-header" id="detail-header"></div>
-    <div class="filters" id="filters"></div>
-    <ul class="rec-list" id="rec-list"></ul>
-  </div>
+  <script>
+    const STORAGE_KEY = 'travel-guide-edits';
 
-</div>
-
-<script>
-  const places = [
-    {
-      rank: 1,
-      name: "Encinitas",
-      region: "California, USA",
-      note: "My happy place. The kind of town where you can walk everywhere, the coffee is always good, and nobody's in a rush. I've never had a bad day here.",
-      recs: [
-        { rank: 1, name: "Swami's Cafe", category: "Restaurant", note: "The breakfast burrito is non-negotiable. Get there before 10am or expect a wait. Worth it every time." },
-        { rank: 2, name: "Lofty Coffee", category: "Coffee", note: "Best coffee on the coast. The Leucadia location has the best vibe — outdoor seating, good people-watching." },
-        { rank: 3, name: "Pannikin Coffee & Tea", category: "Coffee", note: "Historic spot inside an old train depot. Get something iced and sit outside. Very Encinitas." },
-        { rank: 4, name: "El Callejon", category: "Restaurant", note: "Old-school Mexican on Coast Hwy. The mole is the real deal and the margaritas are dangerously strong." },
-        { rank: 5, name: "Swami's Beach", category: "Activity", note: "Park at the top of the bluff and walk down the stairs. Quiet end of the beach, great for surfing or just watching." },
-        { rank: 6, name: "Self-Realization Fellowship Garden", category: "Activity", note: "Free, open to the public, and somehow totally peaceful even when it's crowded. The koi pond overlooks the ocean." },
-        { rank: 7, name: "Seaside Market", category: "Shopping", note: "The best grocery store in San Diego County. Pick up snacks, good wine, and their famous Cardiff crack (tri-tip)." },
-        { rank: 8, name: "Surfy Surfy", category: "Shopping", note: "Small, curated surf shop with actual good taste. Not a tourist trap. Great for a board or just browsing." }
-      ]
-    },
-    {
-      rank: 2,
-      name: "Cape Cod",
-      region: "Massachusetts, USA",
-      note: "Summer only — and I mean that. Off-season it's beautiful but melancholy. In July it's the most perfect place in America. Lobster rolls and no cell service.",
-      recs: [
-        { rank: 1, name: "Mac's Seafood", category: "Restaurant", note: "The raw bar at Wellfleet Harbor. Get the oysters (they're from right there) and whatever the fresh catch is. Do not overthink it." },
-        { rank: 2, name: "Hole in One", category: "Coffee", note: "Orleans institution. Donuts made fresh every morning. Get a coffee and a maple glazed and find a bench outside." },
-        { rank: 3, name: "The Optimist Cafe", category: "Restaurant", note: "Best breakfast on the outer Cape. The egg sandwich is simple but they do it perfectly. Always a line, always worth it." },
-        { rank: 4, name: "Race Point Beach", category: "Activity", note: "The tip of the Cape. Drive the 4WD trail at low tide if you can. Seals on the rocks, zero crowds past the first stretch." },
-        { rank: 5, name: "Cape Cod Rail Trail", category: "Activity", note: "Rent bikes in Brewster and ride toward the ocean. 25 miles of car-free trail through pine forest and cranberry bogs." },
-        { rank: 6, name: "Provincetown shops", category: "Shopping", note: "Commercial Street is touristy but the side streets have great little galleries and independent shops. Allow 2 hours to wander." },
-        { rank: 7, name: "The Squealing Pig", category: "Bar", note: "Brewster dive bar. Cheap beer, good wings, no pretense. Exactly what you want after a day at the beach." },
-        { rank: 8, name: "Nauset Light Beach", category: "Activity", note: "The postcard Cape Cod. The striped lighthouse, big waves, and classic New England dune grass. Go at golden hour." }
-      ]
-    },
-    {
-      rank: 3,
-      name: "New York City",
-      region: "New York, USA",
-      note: "I could live here and I understand exactly why people do. Also I could never live here and I understand exactly why people leave. Go for a long weekend at minimum — the city doesn't open up until day three.",
-      recs: [
-        { rank: 1, name: "Xi'an Famous Foods", category: "Restaurant", note: "Hand-ripped noodles in a spicy lamb broth. The best $12 meal in the city. Any location works, the St. Marks one is the most fun." },
-        { rank: 2, name: "Russ & Daughters Cafe", category: "Restaurant", note: "The classic NYC smoked fish brunch. Get the Super Heebster bagel and eat it slowly. Go on a weekday to avoid the wait." },
-        { rank: 3, name: "Cafe Grumpy", category: "Coffee", note: "Chelsea location is my go-to. Serious coffee, no laptop vibe, but they're not mean about it. Good for a quick stop." },
-        { rank: 4, name: "Attaboy", category: "Bar", note: "No menu, no sign, they just make you something based on what you like. Lower East Side. Go early (10pm is early here)." },
-        { rank: 5, name: "The Strand Bookstore", category: "Shopping", note: "18 miles of books. The review copies table outside is dangerous. Budget an hour minimum and bring a tote bag." },
-        { rank: 6, name: "Governors Island", category: "Activity", note: "Take the free ferry on a weekday. No cars, great views of the skyline, and a completely different pace from Manhattan." },
-        { rank: 7, name: "McNally Jackson", category: "Shopping", note: "Best independent bookstore in the city. The Seaport location is the prettiest. Staff picks are always genuinely good." },
-        { rank: 8, name: "Superiority Burger", category: "Restaurant", note: "Vegetarian burger spot in the East Village. The burger is better than any meat burger nearby. Get the crispy rice cake too." },
-        { rank: 9, name: "High Line", category: "Activity", note: "Go early morning before the crowds. Start at the 34th St end and walk south. The views of the Hudson at the end are the best." }
-      ]
-    },
-    {
-      rank: 4,
-      name: "Boston",
-      region: "Massachusetts, USA",
-      note: "Underrated by everyone who hasn't spent real time here. The neighborhoods are walkable, the food scene grew up, and the history is actually everywhere — not just on a plaque.",
-      recs: [
-        { rank: 1, name: "Neptune Oyster", category: "Restaurant", note: "Tiny, no reservations, cash only. The hot lobster roll with butter is the best thing I've eaten in New England. Get there when they open." },
-        { rank: 2, name: "Myers + Chang", category: "Restaurant", note: "Asian-American dim sum in the South End. The scallion pancake with pork is what I dream about. Great cocktails too." },
-        { rank: 3, name: "Thinking Cup", category: "Coffee", note: "Beacon Hill location on Charles St. Good espresso, great window seats for people-watching. Boston Common right outside." },
-        { rank: 4, name: "Drink", category: "Bar", note: "No menu bar in Fort Point. Tell them what spirit and mood you're in. Every cocktail has been perfect. Reservations required." },
-        { rank: 5, name: "Isabella Stewart Gardner Museum", category: "Activity", note: "One of the best museums in the country and most people outside Boston don't know it. The courtyard alone is worth the price." },
-        { rank: 6, name: "Bodega", category: "Shopping", note: "Hidden behind a fake convenience store in Back Bay. Sneakers, streetwear, the whole bit. The entrance never gets old." },
-        { rank: 7, name: "Arnold Arboretum", category: "Activity", note: "Free, massive, and gorgeous year-round. Go in May for the lilac festival or October for the fall foliage. Bring a picnic." },
-        { rank: 8, name: "Toro", category: "Restaurant", note: "Spanish tapas in the South End. The corn with aioli is famous for a reason. Loud, fun, and always packed. Go late." }
-      ]
-    },
-    {
-      rank: 5,
-      name: "London",
-      region: "England, UK",
-      note: "A city that keeps revealing itself. I've been five times and feel like I've barely started. The neighborhoods are each their own world — plan by area, not by landmark.",
-      recs: [
-        { rank: 1, name: "Rochelle Canteen", category: "Restaurant", note: "Lunch only, hidden in a converted bike shed in Shoreditch. British seasonal menu, maybe 8 items. Everything is perfect. Book ahead." },
-        { rank: 2, name: "Monmouth Coffee", category: "Coffee", note: "Borough Market location is the classic. Get a coffee and stand outside watching the market. Best coffee in London, no argument." },
-        { rank: 3, name: "Daunt Books", category: "Shopping", note: "The Marylebone original is one of the most beautiful bookshops in the world. Books organized by country. Bring your wallet." },
-        { rank: 4, name: "Swift", category: "Bar", note: "Two-floor cocktail bar in Soho. Upstairs is casual, downstairs is intimate. The Irish coffee is legendary. Always busy, always worth it." },
-        { rank: 5, name: "Columbia Road Flower Market", category: "Activity", note: "Sunday mornings only. The whole street becomes a flower market. Arrive early (8am), grab coffee from a side-street stall, take your time." },
-        { rank: 6, name: "Sir John Soane's Museum", category: "Activity", note: "Free, bizarre, incredible. The architect filled his house with antiquities and left it exactly as it was. One of London's best secrets." },
-        { rank: 7, name: "Portobello Road Market", category: "Shopping", note: "Saturday only for the full antiques market. Get there by 9am before the dealers pick it clean. The side streets have better finds than the main drag." },
-        { rank: 8, name: "Brat", category: "Restaurant", note: "Wood-fire cooking in Shoreditch. The whole turbot is the move if you can get a group together. Tasting menu is worth every penny." },
-        { rank: 9, name: "Hampstead Heath", category: "Activity", note: "Take the Northern line to Hampstead and walk the whole heath. Parliament Hill has the best view of the skyline. Bring layers." }
-      ]
+    function loadEdits() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      try {
+        const edits = JSON.parse(raw);
+        for (const [key, value] of Object.entries(edits)) {
+          const recMatch = key.match(/^p(\d+)_r(\d+)_note$/);
+          if (recMatch) {
+            const [, pi, ri] = recMatch;
+            if (places[pi]?.recs[ri]) places[pi].recs[ri].note = value;
+          }
+        }
+      } catch (e) {}
     }
-  ];
 
-  const ALL_CATEGORIES = ["All", "Restaurant", "Coffee", "Bar", "Shopping", "Activity"];
+    function saveEdit(key, value) {
+      const edits = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      edits[key] = value;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(edits));
+    }
 
-  let activeFilter = "All";
+    const places = [
+      {
+        rank: 1,
+        name: "Encinitas",
+        region: "California, USA",
+        lastVisited: "March 2025",
+        recs: [
+          { rank: 1, name: "Swami's Cafe", category: "Restaurant", note: "The breakfast burrito is non-negotiable. Get there before 10am or expect a wait. Worth it every time." },
+          { rank: 2, name: "Lofty Coffee", category: "Coffee", note: "Best coffee on the coast. The Leucadia location has the best vibe — outdoor seating, good people-watching." },
+          { rank: 3, name: "Pannikin Coffee & Tea", category: "Coffee", note: "Historic spot inside an old train depot. Get something iced and sit outside. Very Encinitas." },
+          { rank: 4, name: "El Callejon", category: "Restaurant", note: "Old-school Mexican on Coast Hwy. The mole is the real deal and the margaritas are dangerously strong." },
+          { rank: 5, name: "Swami's Beach", category: "Activity", note: "Park at the top of the bluff and walk down the stairs. Quiet end of the beach, great for surfing or just watching." },
+          { rank: 6, name: "Self-Realization Fellowship Garden", category: "Activity", note: "Free, open to the public, and somehow totally peaceful even when it's crowded. The koi pond overlooks the ocean." },
+          { rank: 7, name: "Seaside Market", category: "Shopping", note: "The best grocery store in San Diego County. Pick up snacks, good wine, and their famous Cardiff crack (tri-tip)." },
+          { rank: 8, name: "Surfy Surfy", category: "Shopping", note: "Small, curated surf shop with actual good taste. Not a tourist trap. Great for a board or just browsing." }
+        ]
+      },
+      {
+        rank: 2,
+        name: "Cape Cod",
+        region: "Massachusetts, USA",
+        lastVisited: "July 2024",
+        recs: [
+          { rank: 1, name: "Mac's Seafood", category: "Restaurant", note: "The raw bar at Wellfleet Harbor. Get the oysters (they're from right there) and whatever the fresh catch is. Do not overthink it." },
+          { rank: 2, name: "Hole in One", category: "Coffee", note: "Orleans institution. Donuts made fresh every morning. Get a coffee and a maple glazed and find a bench outside." },
+          { rank: 3, name: "The Optimist Cafe", category: "Restaurant", note: "Best breakfast on the outer Cape. The egg sandwich is simple but they do it perfectly. Always a line, always worth it." },
+          { rank: 4, name: "Race Point Beach", category: "Activity", note: "The tip of the Cape. Drive the 4WD trail at low tide if you can. Seals on the rocks, zero crowds past the first stretch." },
+          { rank: 5, name: "Cape Cod Rail Trail", category: "Activity", note: "Rent bikes in Brewster and ride toward the ocean. 25 miles of car-free trail through pine forest and cranberry bogs." },
+          { rank: 6, name: "Provincetown shops", category: "Shopping", note: "Commercial Street is touristy but the side streets have great little galleries and independent shops. Allow 2 hours to wander." },
+          { rank: 7, name: "The Squealing Pig", category: "Bar", note: "Brewster dive bar. Cheap beer, good wings, no pretense. Exactly what you want after a day at the beach." },
+          { rank: 8, name: "Nauset Light Beach", category: "Activity", note: "The postcard Cape Cod. The striped lighthouse, big waves, and classic New England dune grass. Go at golden hour." }
+        ]
+      },
+      {
+        rank: 3,
+        name: "New York City",
+        region: "New York, USA",
+        lastVisited: "November 2024",
+        recs: [
+          { rank: 1, name: "Xi'an Famous Foods", category: "Restaurant", note: "Hand-ripped noodles in a spicy lamb broth. The best $12 meal in the city. Any location works, the St. Marks one is the most fun." },
+          { rank: 2, name: "Russ & Daughters Cafe", category: "Restaurant", note: "The classic NYC smoked fish brunch. Get the Super Heebster bagel and eat it slowly. Go on a weekday to avoid the wait." },
+          { rank: 3, name: "Cafe Grumpy", category: "Coffee", note: "Chelsea location is my go-to. Serious coffee, no laptop vibe, but they're not mean about it. Good for a quick stop." },
+          { rank: 4, name: "Attaboy", category: "Bar", note: "No menu, no sign, they just make you something based on what you like. Lower East Side. Go early (10pm is early here)." },
+          { rank: 5, name: "The Strand Bookstore", category: "Shopping", note: "18 miles of books. The review copies table outside is dangerous. Budget an hour minimum and bring a tote bag." },
+          { rank: 6, name: "Governors Island", category: "Activity", note: "Take the free ferry on a weekday. No cars, great views of the skyline, and a completely different pace from Manhattan." },
+          { rank: 7, name: "McNally Jackson", category: "Shopping", note: "Best independent bookstore in the city. The Seaport location is the prettiest. Staff picks are always genuinely good." },
+          { rank: 8, name: "Superiority Burger", category: "Restaurant", note: "Vegetarian burger spot in the East Village. The burger is better than any meat burger nearby. Get the crispy rice cake too." },
+          { rank: 9, name: "High Line", category: "Activity", note: "Go early morning before the crowds. Start at the 34th St end and walk south. The views of the Hudson at the end are the best." }
+        ]
+      },
+      {
+        rank: 4,
+        name: "Boston",
+        region: "Massachusetts, USA",
+        lastVisited: "October 2024",
+        recs: [
+          { rank: 1, name: "Neptune Oyster", category: "Restaurant", note: "Tiny, no reservations, cash only. The hot lobster roll with butter is the best thing I've eaten in New England. Get there when they open." },
+          { rank: 2, name: "Myers + Chang", category: "Restaurant", note: "Asian-American dim sum in the South End. The scallion pancake with pork is what I dream about. Great cocktails too." },
+          { rank: 3, name: "Thinking Cup", category: "Coffee", note: "Beacon Hill location on Charles St. Good espresso, great window seats for people-watching. Boston Common right outside." },
+          { rank: 4, name: "Drink", category: "Bar", note: "No menu bar in Fort Point. Tell them what spirit and mood you're in. Every cocktail has been perfect. Reservations required." },
+          { rank: 5, name: "Isabella Stewart Gardner Museum", category: "Activity", note: "One of the best museums in the country and most people outside Boston don't know it. The courtyard alone is worth the price." },
+          { rank: 6, name: "Bodega", category: "Shopping", note: "Hidden behind a fake convenience store in Back Bay. Sneakers, streetwear, the whole bit. The entrance never gets old." },
+          { rank: 7, name: "Arnold Arboretum", category: "Activity", note: "Free, massive, and gorgeous year-round. Go in May for the lilac festival or October for the fall foliage. Bring a picnic." },
+          { rank: 8, name: "Toro", category: "Restaurant", note: "Spanish tapas in the South End. The corn with aioli is famous for a reason. Loud, fun, and always packed. Go late." }
+        ]
+      },
+      {
+        rank: 5,
+        name: "London",
+        region: "England, UK",
+        lastVisited: "April 2024",
+        recs: [
+          { rank: 1, name: "Rochelle Canteen", category: "Restaurant", note: "Lunch only, hidden in a converted bike shed in Shoreditch. British seasonal menu, maybe 8 items. Everything is perfect. Book ahead." },
+          { rank: 2, name: "Monmouth Coffee", category: "Coffee", note: "Borough Market location is the classic. Get a coffee and stand outside watching the market. Best coffee in London, no argument." },
+          { rank: 3, name: "Daunt Books", category: "Shopping", note: "The Marylebone original is one of the most beautiful bookshops in the world. Books organized by country. Bring your wallet." },
+          { rank: 4, name: "Swift", category: "Bar", note: "Two-floor cocktail bar in Soho. Upstairs is casual, downstairs is intimate. The Irish coffee is legendary. Always busy, always worth it." },
+          { rank: 5, name: "Columbia Road Flower Market", category: "Activity", note: "Sunday mornings only. The whole street becomes a flower market. Arrive early (8am), grab coffee from a side-street stall, take your time." },
+          { rank: 6, name: "Sir John Soane's Museum", category: "Activity", note: "Free, bizarre, incredible. The architect filled his house with antiquities and left it exactly as it was. One of London's best secrets." },
+          { rank: 7, name: "Portobello Road Market", category: "Shopping", note: "Saturday only for the full antiques market. Get there by 9am before the dealers pick it clean. The side streets have better finds than the main drag." },
+          { rank: 8, name: "Brat", category: "Restaurant", note: "Wood-fire cooking in Shoreditch. The whole turbot is the move if you can get a group together. Tasting menu is worth every penny." },
+          { rank: 9, name: "Hampstead Heath", category: "Activity", note: "Take the Northern line to Hampstead and walk the whole heath. Parliament Hill has the best view of the skyline. Bring layers." }
+        ]
+      }
+    ];
 
-  function renderPlaceList() {
-    const list = document.getElementById("place-list");
-    list.innerHTML = places.map((p, i) => `
+    const ALL_CATEGORIES = ["All", "Restaurant", "Coffee", "Bar", "Shopping", "Activity"];
+
+    let activeFilter = "All";
+    let currentPlaceIndex = -1;
+
+    function renderPlaceList() {
+      const list = document.getElementById("place-list");
+      list.innerHTML = places.map((p, i) => `
       <li onclick="showDetail(${i})">
         <span class="rank">#${p.rank}</span>
         <div class="place-meta">
@@ -374,76 +447,93 @@
         <span class="rec-count">${p.recs.length} picks</span>
       </li>
     `).join("");
-  }
+    }
 
-  function showDetail(index) {
-    const p = places[index];
-    activeFilter = "All";
+    function showDetail(index) {
+      const p = places[index];
+      activeFilter = "All";
+      currentPlaceIndex = index;
 
-    document.getElementById("detail-header").innerHTML = `
+      document.getElementById("detail-header").innerHTML = `
       <p class="detail-rank">Ranked #${p.rank}</p>
       <h1>${p.name}</h1>
       <p class="detail-region">${p.region}</p>
-      <p class="detail-note">${p.note}</p>
+      <p class="detail-note">Last visited: ${p.lastVisited}</p>
     `;
 
-    renderFilters(p);
-    renderRecs(p);
+      renderFilters(p);
+      renderRecs(p, index);
 
-    document.getElementById("list-view").style.display = "none";
-    document.getElementById("detail-view").style.display = "block";
-    window.scrollTo(0, 0);
-  }
+      document.getElementById("list-view").style.display = "none";
+      document.getElementById("detail-view").style.display = "block";
+      window.scrollTo(0, 0);
+    }
 
-  function renderFilters(place) {
-    const categories = ["All", ...new Set(place.recs.map(r => r.category))];
-    const container = document.getElementById("filters");
-    container.innerHTML = categories.map(cat => `
+    function renderFilters(place) {
+      const categories = ["All", ...new Set(place.recs.map(r => r.category))];
+      const container = document.getElementById("filters");
+      container.innerHTML = categories.map(cat => `
       <button
         class="filter-btn ${cat === activeFilter ? 'active' : ''}"
         onclick="setFilter('${cat}', ${places.indexOf(place)})"
       >${cat}</button>
     `).join("");
-  }
-
-  function setFilter(category, placeIndex) {
-    activeFilter = category;
-    const place = places[placeIndex];
-    renderFilters(place);
-    renderRecs(place);
-  }
-
-  function renderRecs(place) {
-    const filtered = activeFilter === "All"
-      ? place.recs
-      : place.recs.filter(r => r.category === activeFilter);
-
-    const list = document.getElementById("rec-list");
-
-    if (filtered.length === 0) {
-      list.innerHTML = `<p class="no-results">No recommendations in this category yet.</p>`;
-      return;
     }
 
-    list.innerHTML = filtered.map(r => `
-      <li class="rec-card">
-        <span class="rec-rank">#${r.rank}</span>
-        <div class="rec-body">
-          <p class="rec-name">${r.name}</p>
-          <span class="rec-category">${r.category}</span>
-          <p class="rec-note">${r.note}</p>
-        </div>
-      </li>
-    `).join("");
-  }
+    function setFilter(category, placeIndex) {
+      activeFilter = category;
+      const place = places[placeIndex];
+      renderFilters(place);
+      renderRecs(place, placeIndex);
+    }
 
-  function showList() {
-    document.getElementById("detail-view").style.display = "none";
-    document.getElementById("list-view").style.display = "block";
-    window.scrollTo(0, 0);
-  }
+    function renderRecs(place, placeIndex) {
+      const filtered = activeFilter === "All"
+        ? place.recs
+        : place.recs.filter(r => r.category === activeFilter);
 
-  renderPlaceList();
-</script>
+      const list = document.getElementById("rec-list");
+
+      if (filtered.length === 0) {
+        list.innerHTML = `<p class="no-results">No recommendations in this category yet.</p>`;
+        return;
+      }
+
+      list.innerHTML = filtered.map(r => {
+        const ri = place.recs.indexOf(r);
+        return `
+        <li class="rec-card">
+          <span class="rec-rank">#${r.rank}</span>
+          <div class="rec-body">
+            <p class="rec-name">${r.name}</p>
+            <span class="rec-category">${r.category}</span>
+            <p class="rec-note" contenteditable="true" data-edit-key="p${placeIndex}_r${ri}_note">${r.note}</p>
+          </div>
+        </li>
+      `;
+      }).join("");
+    }
+
+    function showList() {
+      document.getElementById("detail-view").style.display = "none";
+      document.getElementById("list-view").style.display = "block";
+      window.scrollTo(0, 0);
+    }
+
+    document.querySelector('.container').addEventListener('focusout', function (e) {
+      const el = e.target;
+      if (!el.dataset.editKey) return;
+      const value = el.innerText.trim();
+      saveEdit(el.dataset.editKey, value);
+      const recMatch = el.dataset.editKey.match(/^p(\d+)_r(\d+)_note$/);
+      if (recMatch) {
+        places[recMatch[1]].recs[recMatch[2]].note = value;
+      }
+    });
+
+    loadEdits();
+    renderPlaceList();
+  </script>
 </body>
+
 </html>
